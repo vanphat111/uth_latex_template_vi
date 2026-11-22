@@ -1,0 +1,34 @@
+\chapter{CƠ SỞ LÝ THUYẾT}
+\label{chap:theory}
+
+[Chương này trình bày các khái niệm lý thuyết cốt lõi, cơ sở toán học và tổng quan các nghiên cứu liên quan đến đề tài.]
+
+% ================= SECTION 2.1 =================
+\section{Các khái niệm cơ bản}
+\label{sec:concepts}
+
+[Giải thích các định nghĩa, nguyên lý hoạt động nền tảng. Trích dẫn tài liệu học thuật liên quan như \cite{sample_conference, sample_standard}.]
+
+% ================= SECTION 2.2 =================
+\section{Mô hình và công thức toán học}
+\label{sec:math}
+
+[Trình bày các công thức và biến đổi toán học phục vụ cho hệ thống.]
+
+Ví dụ công thức toán có đánh số:
+\begin{equation}
+    f(x) = \sum_{i=1}^{n} w_i \cdot x_i + b
+    \label{eq:sample_linear}
+\end{equation}
+trong đó $w_i$ là hệ số trọng số, $x_i$ là biến đầu vào và $b$ là hệ số điều chỉnh (bias).
+
+Biến đổi toán học nhiều dòng canh lề:
+\begin{equation}
+\begin{aligned}
+    \mathcal{L}(\theta) &= -\frac{1}{N} \sum_{i=1}^{N} \left[ y_i \log(\hat{y}_i) + (1 - y_i) \log(1 - \hat{y}_i) \right] \\
+    &= \frac{1}{N} \sum_{i=1}^{N} \ell_i(\theta)
+\end{aligned}
+\label{eq:sample_loss}
+\end{equation}
+
+Từ Phương trình~\eqref{eq:sample_linear} và Phương trình~\eqref{eq:sample_loss}, hệ thống tiến hành tối ưu hóa tham số trong quá trình huấn luyện.

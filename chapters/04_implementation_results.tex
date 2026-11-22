@@ -1,0 +1,68 @@
+\chapter{HIỆN THỰC VÀ KẾT QUẢ THỰC NGHIỆM}
+\label{chap:implementation}
+
+[Chương này trình bày môi trường phát triển, chi tiết mã nguồn cài đặt, các ca thử nghiệm và phân tích kết quả đạt được.]
+
+% ================= SECTION 4.1 =================
+\section{Môi trường phát triển và thử nghiệm}
+\label{sec:environment}
+
+[Liệt kê cấu hình phần cứng và phần mềm sử dụng trong quá trình thử nghiệm.]
+
+\begin{table}[H]
+    \centering
+    \caption{Môi trường phần cứng và phần mềm thử nghiệm}
+    \label{tab:sample_env}
+    \begin{tabular}{|l|l|}
+        \hline
+        \textbf{Thành phần} & \textbf{Thông số kỹ thuật} \\ \hline
+        Hệ điều hành & Linux (Ubuntu / Arch Linux) \\ \hline
+        Ngôn ngữ lập trình & Python 3.x \\ \hline
+        Trình thông dịch / Compiler & Python runtime \\ \hline
+        Bộ nhớ RAM & 16 GB \\ \hline
+    \end{tabular}
+    \source{Môi trường thực nghiệm của tác giả}
+\end{table}
+
+% ================= SECTION 4.2 =================
+\section{Hiện thực mã nguồn}
+\label{sec:code_details}
+
+Đoạn mã mẫu cài đặt hàm tính toán bằng Python được minh họa tại Đoạn mã~\ref{lst:sample_code}.
+
+\begin{lstlisting}[language=Python, caption={Đoạn mã minh họa thuật toán xử lý}, label={lst:sample_code}]
+def compute_metrics(data_samples, threshold=0.5):
+    """
+    Ham danh gia chi so phan loai.
+    """
+    results = []
+    for sample in data_samples:
+        score = sample.get("score", 0.0)
+        is_positive = score >= threshold
+        results.append({"id": sample["id"], "prediction": is_positive})
+    return results
+
+if __name__ == "__main__":
+    test_data = [{"id": 1, "score": 0.82}, {"id": 2, "score": 0.35}]
+    print(compute_metrics(test_data))
+\end{lstlisting}
+
+% ================= SECTION 4.3 =================
+\section{Kết quả thực nghiệm và thảo luận}
+\label{sec:results}
+
+[Trình bày bảng số liệu đo lường, biểu đồ và phân tích đánh giá kết quả.]
+
+\begin{table}[H]
+    \centering
+    \caption{Kết quả đo lường hiệu năng thực nghiệm}
+    \label{tab:sample_results}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        \textbf{Mã ca thử} & \textbf{Kích thước dữ liệu} & \textbf{Thời gian thực thi (ms)} & \textbf{Kết quả} \\ \hline
+        TC-01 & 1 KB & 0.45 & Đạt \\ \hline
+        TC-02 & 10 KB & 2.18 & Đạt \\ \hline
+        TC-03 & 100 KB & 18.64 & Đạt \\ \hline
+    \end{tabular}
+    \source{Số liệu thực nghiệm do tác giả đo lường}
+\end{table}

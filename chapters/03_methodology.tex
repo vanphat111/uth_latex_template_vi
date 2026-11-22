@@ -1,0 +1,49 @@
+\chapter{PHƯƠNG PHÁP NGHIÊN CỨU VÀ KIẾN TRÚC HỆ THỐNG}
+\label{chap:methodology}
+
+[Chương này mô tả chi tiết phương pháp tiếp cận, kiến trúc tổng thể của hệ thống và quy trình xử lý dữ liệu.]
+
+% ================= SECTION 3.1 =================
+\section{Kiến trúc tổng thể hệ thống}
+\label{sec:architecture}
+
+[Mô tả các thành phần chính trong hệ thống và mối quan hệ giữa chúng.]
+
+\begin{figure}[H]
+    \centering
+    % Sơ đồ minh họa bằng TikZ
+    \begin{tikzpicture}[node distance=2cm, auto,
+        block/.style={rectangle, draw, fill=blue!10, text width=7.5em, text centered, rounded corners, minimum height=3em},
+        line/.style={draw, -latex', thick}]
+        \node [block] (input) {Khối Nhận Dữ Liệu};
+        \node [block, right of=input, node distance=4cm] (process) {Khối Xử Lý Trung Tâm};
+        \node [block, right of=process, node distance=4cm] (output) {Khối Xuất Kết Quả};
+        \path [draw, ->, thick] (input) -- (process);
+        \path [draw, ->, thick] (process) -- (output);
+    \end{tikzpicture}
+    \caption{Sơ đồ kiến trúc tổng quan của hệ thống}
+    \label{fig:sample_architecture}
+    \source{Tác giả tự thiết kế}
+\end{figure}
+
+Như thể hiện trên Hình~\ref{fig:sample_architecture}, luồng dữ liệu di chuyển tuần tự qua 3 khối chức năng chính.
+
+% ================= SECTION 3.2 =================
+\section{Đặc tả các thành phần chức năng}
+\label{sec:specifications}
+
+Bảng~\ref{tab:sample_specifications} tóm tắt vai trò và công nghệ sử dụng của từng mô-đun trong hệ thống.
+
+\begin{table}[H]
+    \caption{Đặc tả chức năng và công nghệ của các mô-đun}
+    \label{tab:sample_specifications}
+    \centering
+    \begin{tabular}{|l|p{6.5cm}|p{4cm}|}
+        \hline
+        \textbf{Tên mô-đun} & \textbf{Chức năng chính} & \textbf{Công nghệ áp dụng} \\ \hline
+        Tiếp nhận dữ liệu & Kiểm tra tính hợp lệ và phân tích gói tin & Bộ phân tích JSON / UTF-8 \\ \hline
+        Xử lý trung tâm & Thực thi giải thuật tính toán cốt lõi & Python / Thuật toán lõi \\ \hline
+        Lưu trữ và báo cáo & Ghi log và lưu kết quả đầu ra & Cơ sở dữ liệu / File \\ \hline
+    \end{tabular}
+    \source{Tác giả tổng hợp}
+\end{table}
