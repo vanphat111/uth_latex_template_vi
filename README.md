@@ -2,7 +2,7 @@
 
 Template báo cáo tiểu luận, đồ án môn học chuẩn định dạng dành cho sinh viên **Trường Đại học Giao thông Vận tải TP.HCM (UTH)**.
 
-Được thiết kế theo cấu trúc mô-đun chuẩn, tối ưu hóa cho **Overleaf** và biên dịch cục bộ (TeX Live / VS Code / Makefile).
+Được thiết kế theo cấu trúc mô-đun chuẩn, tối ưu hóa cho **Overleaf**, biên dịch cục bộ (TeX Live / VS Code / Makefile), và đặc biệt **tương thích hoàn hảo với các AI Assistant** (Cursor, ChatGPT, Claude, Gemini...).
 
 ---
 
@@ -13,6 +13,8 @@ uth_latex_template_vi/
 ├── main.tex                    # File biên dịch chính (chỉ chứa khung \input)
 ├── preamble.tex                # Khai báo gói, font 13pt Times, thông tin đề tài
 ├── refs.bib                    # Cơ sở dữ liệu tài liệu tham khảo (BibTeX)
+├── AI_GUIDELINES.md            # Nguyên tắc & prompt chuẩn cho AI Assistant
+├── README.md                   # Hướng dẫn sử dụng & cấu trúc dự án
 ├── Makefile                    # Tự động hóa build PDF trên Linux/macOS
 ├── .gitignore                  # Bỏ qua các file tạm/rác do LaTeX sinh ra
 │
@@ -38,6 +40,27 @@ uth_latex_template_vi/
 ├── tables/                     # Thư mục chứa bảng biểu phức tạp (tùy chọn)
 └── code/                       # Thư mục chứa mã nguồn đính kèm (tùy chọn)
 ```
+
+---
+
+## 🤖 Hướng dẫn Dành cho AI Assistant (ChatGPT, Claude, Cursor...)
+
+Nếu bạn dùng các công cụ lập trình AI (như **Cursor**, **GitHub Copilot**, **ChatGPT**, **Claude**) để hỗ trợ viết báo cáo, hãy cấp file [AI_GUIDELINES.md](AI_GUIDELINES.md) làm context hoặc system prompt:
+
+### Các nguyên tắc cốt lõi AI cần tuân thủ:
+1. **Kiến trúc mô-đun:** Không bao giờ viết thẳng nội dung vào `main.tex`. Mọi chương phải nằm trong thư mục `chapters/`. Không khai báo lại `\documentclass` hay `\begin{document}` trong các file con.
+2. **Metadata đề tài:** Mọi thay đổi tên đề tài, tên sinh viên, giảng viên... phải sửa tại các biến macro trong `preamble.tex`, không sửa cứng trong file bìa `frontmatter/titlepage.tex`.
+3. **Quy chuẩn Bảng biểu (`table`):**
+   - Vị trí `[H]`.
+   - `\caption{...}` **ở trên** bảng.
+   - Luôn kèm `\source{...}` ngay dưới `\end{tabular}`.
+4. **Quy chuẩn Hình ảnh (`figure`):**
+   - Vị trí `[H]`. Ảnh để trong `figures/` (không ghi tiền tố `figures/` trong `\includegraphics`).
+   - `\caption{...}` **ở dưới** ảnh.
+   - Luôn kèm `\source{...}` ngay dưới `\caption{...}`.
+5. **Trích dẫn khoa học:** Mọi trích dẫn phải khai báo trong `refs.bib` và gọi bằng `\cite{key}` (chuẩn IEEE `[1]`, `[2]`). Tuyệt đối không gõ tay số trích dẫn.
+
+👉 *Xem chi tiết đầy đủ các quy tắc tại [AI_GUIDELINES.md](AI_GUIDELINES.md).*
 
 ---
 
@@ -82,15 +105,6 @@ Tất cả thông tin đồ án được quản lý tập trung tại cuối fil
 \newcommand{\LocationDate}{TP. Hồ Chí Minh, Tháng ... Năm 2026}
 ```
 *Trang bìa, lời cam đoan và lời cảm ơn sẽ tự động đồng bộ theo các thông tin này!*
-
----
-
-## 💡 Quy ước Soạn thảo Nhanh
-
-* **Thêm hình ảnh:** Đặt ảnh vào thư mục `figures/` (ví dụ `figures/my_chart.png`). Trong bài chỉ cần gọi `\includegraphics[width=...]{my_chart.png}` (đường dẫn `figures/` đã được cấu hình tự động).
-* **Trích dẫn nguồn ảnh/bảng:** Sử dụng lệnh `\source{Tên nguồn}` ngay dưới caption.
-* **Trích dẫn tài liệu:** Thêm entry vào `refs.bib` và dùng `\cite{key}` trong văn bản.
-* **Chèn code:** Dùng môi trường `\begin{lstlisting}[language=Python] ... \end{lstlisting}`.
 
 ---
 
